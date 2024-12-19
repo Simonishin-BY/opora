@@ -1,0 +1,23 @@
+stages:
+  - test
+  - build
+  - deploy
+
+test:
+  stage: test
+  image: python:3.9-slim
+  script:
+    - pip install -r requirements.txt
+    - pytest
+
+build:
+  stage: build
+  script:
+    - docker build -t myapp:latest .
+
+deploy:
+  stage: deploy
+  script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "$CI_REGISTRY"
+    - docker push "$CI_REGISTRY_IMAGE:latest"
+    - echo "Deploy to Heroku (или другой хостинг) завершен"

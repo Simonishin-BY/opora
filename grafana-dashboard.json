@@ -1,0 +1,29 @@
+{
+    "dashboard": {
+      "id": null,
+      "uid": "webapp-dashboard",
+      "title": "WebApp Dashboard",
+      "timezone": "browser",
+      "panels": [
+        {
+          "type": "graph",
+          "title": "HTTP Requests",
+          "targets": [
+            {
+              "expr": "rate(http_requests_total[1m])",
+              "legendFormat": "{{method}}",
+              "refId": "A"
+            }
+          ],
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 0
+          }
+        }
+      ]
+    },
+    "overwrite": false
+  }
+  
